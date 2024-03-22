@@ -1,0 +1,59 @@
+#CUDA_VISIBLE_DEVICES=1 python hat/test.py -opt options/cutom_test/test_final.yml
+name: Test
+model_type: HATModel
+scale: 4
+num_gpu: 1  # set num_gpu: 0 for cpu mode
+manual_seed: 0
+
+high_order_degradation: False
+
+datasets:
+  test_1:  # the 1st test dataset
+    name: DIV2K
+    type: PairedImageDataset
+    dataroot_gt: ./DIV2K_valid_HR # put your HR folder path
+    dataroot_lq: ./DIV2K_valid_LR # put your LR floder path
+    io_backend:
+      type: disk
+
+# network structures
+network_g:
+  type: HAT
+  upscale: 4
+  in_chans: 3
+  img_size: 128
+  window_size: 16
+  compress_ratio: 3
+  squeeze_factor: 30
+  conv_scale: 0.01
+  overlap_ratio: 0.5
+  img_range: 1.
+  depths: [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]
+  embed_dim: 180
+  num_heads: [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]
+  mlp_ratio: 2
+  upsampler: 'pixelshuffle'
+  resi_connection: '1conv'
+
+
+# path
+path:
+  pretrain_network_g: ./model_zoo/team11_hat.pth # put your pretrained file
+  strict_load_g: true
+  param_key_g: 'params_ema'
+
+# validation settings
+val:
+  save_img: true
+  suffix: ~  # add suffix to saved images, if None, use exp name
+  pbar: True
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 4
+      test_y_channel: true
+    ssim:
+      type: calculate_ssim
+      crop_border: 4
+      test_y_channel: true
+      better: higher  # the higher, the better. Default: higher
