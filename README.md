@@ -1,4 +1,4 @@
-# Modidied HAT-L Reference 
+# Modified HAT-L Reference 
 https://dacon.io/en/competitions/official/235977/codeshare/6908?page=1&dtype=recent
 https://dacon.io/en/competitions/official/235977/codeshare/6901?page=1&dtype=recent
 
