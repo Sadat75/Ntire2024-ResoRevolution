@@ -15,7 +15,7 @@ https://dacon.io/en/competitions/official/235977/codeshare/6901?page=1&dtype=rec
 ## Installation
 Please follow the instructions below to setup the environment.
 
-## Install depedencies
+## Install dependencies
 ```
 conda create -n HAT python=3.8
 conda activate HAT
