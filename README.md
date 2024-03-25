@@ -12,7 +12,7 @@ https://dacon.io/en/competitions/official/235977/codeshare/6901?page=1&dtype=rec
 - [PyTorch == 2.1.1](https://pytorch.org/)
 - [BasicSR == 1.3.4.9](https://github.com/XPixelGroup/BasicSR/blob/master/INSTALL.md)
 
-### Installation
+## Installation
 Please follow the instructions below to setup the environment.
 
 ## Install depedencies
